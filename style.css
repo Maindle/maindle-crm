@@ -1,0 +1,46 @@
+body {
+  font-family: 'Arial', sans-serif;
+  background-color: #f6f6f0;
+  color: #333;
+  margin: 0;
+  padding: 0;
+}
+
+header {
+  background-color: #991b1b;
+  color: white;
+  text-align: center;
+  padding: 20px;
+}
+
+nav {
+  background-color: #d4d4d4;
+  display: flex;
+  justify-content: center;
+  padding: 10px;
+  gap: 15px;
+}
+
+nav a {
+  color: #991b1b;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.hero {
+  width: 100%;
+  max-height: 400px;
+  object-fit: cover;
+}
+
+main {
+  padding: 30px;
+  max-width: 900px;
+  margin: auto;
+}
+
+footer {
+  text-align: center;
+  background-color: #d4d4d4;
+  padding: 15px;
+}

@@ -32,5 +32,18 @@
   <footer>
     <p>&copy; 2025 Maindle</p>
   </footer>
+<script>
+  document.querySelector("form").addEventListener("submit", function(e) {
+    e.preventDefault();
+
+    // Simular que el usuario se ha registrado
+    localStorage.setItem("usuarioRegistrado", "true");
+
+    alert("¡Registro exitoso! Ahora puedes acceder al Panel de Usuario.");
+
+    // Redirigir al panel
+   window.location.href = "./usuario.html"; // o "secciones/usuario.html" si estás en otra carpeta
+  });
+</script>
 </body>
 </html>

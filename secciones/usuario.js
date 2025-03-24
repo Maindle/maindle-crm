@@ -15,6 +15,11 @@ window.onload = () => {
   }
 
   cargarPaises();
+
+  document.getElementById("menu-perfil").addEventListener("change", (e) => {
+    if (e.target.value === "revisar") verDatos();
+    if (e.target.value === "editar") editarDatos();
+  });
 };
 
 function mostrarFormulario() {
@@ -24,25 +29,26 @@ function mostrarFormulario() {
 
 document.getElementById("formPerfil").addEventListener("submit", function(e) {
   e.preventDefault();
-
   const datos = Object.fromEntries(new FormData(this));
   localStorage.setItem("perfilDatos", JSON.stringify(datos));
-  localStorage.setItem("perfilCompleto", "true");
-
   document.getElementById("formulario-perfil").classList.add("oculto");
+  document.getElementById("documentos-section").classList.remove("oculto");
+});
+
+function finalizarRegistro() {
+  localStorage.setItem("perfilCompleto", "true");
+  document.getElementById("documentos-section").classList.add("oculto");
   document.getElementById("popup-final").style.display = "flex";
   document.getElementById("sidebar").classList.remove("oculto");
-});
+}
 
 function verDatos() {
   const datos = JSON.parse(localStorage.getItem("perfilDatos"));
   if (!datos) return;
-
   let html = `<h2>Datos del Perfil</h2>`;
   for (let key in datos) {
     html += `<p><strong>${key}:</strong> ${datos[key]}</p>`;
   }
-
   const cont = document.getElementById("vista-datos");
   cont.innerHTML = html;
   cont.classList.remove("oculto");
@@ -55,9 +61,7 @@ function editarDatos() {
   const form = document.createElement("form");
   form.id = "editarForm";
   for (let key in datos) {
-    form.innerHTML += `
-      <label>${key}: <input name="${key}" value="${datos[key]}"></label>
-    `;
+    form.innerHTML += `<label>${key}: <input name="${key}" value="${datos[key]}"></label>`;
   }
 
   form.innerHTML += `
@@ -83,7 +87,10 @@ function cancelarCambios() {
 }
 
 function cargarPaises() {
-  const paises = [ "Afganistán", "Alemania", "Argentina", "Australia", "Brasil", "Canadá", "Chile", "Colombia", "España", "Estados Unidos", "Francia", "Italia", "México", "Perú", "Portugal", "Reino Unido", "Uruguay", "Venezuela" ]; // puedes reemplazar por un listado completo
+  const paises = [...new Intl.DisplayNames(['es'], { type: 'region' }).of ? 
+    Object.keys(Intl.supportedValuesOf("region")) : 
+    ["Argentina", "Brasil", "España", "México", "Perú", "Colombia", "Francia", "Alemania", "Italia"]
+  ];
   const select = document.querySelector("select[name='pais']");
   paises.sort().forEach(p => {
     const opt = document.createElement("option");

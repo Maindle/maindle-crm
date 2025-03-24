@@ -2,29 +2,67 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>Panel Usuario - Maindle</title>
-  <link rel="stylesheet" href="../style.css">
+  <title>Panel de Usuario - Maindle</title>
+  <link rel="stylesheet" href="usuario.css">
 </head>
 <body>
-  <header>
-    <h1>Panel del Usuario</h1>
-  </header>
 
-  <main>
-    <img src="../imagenes/panel_usuario.jpg" alt="Usuario" class="hero">
-    <ul>
-      <li><strong>Mi Perfil:</strong> Datos personales y fiscales.</li>
-      <li><strong>Documentación:</strong> Subida de DNI, comprobante de residencia y firma digital.</li>
-      <li><strong>Contratos:</strong> Visualización y descarga en PDF.</li>
-      <li><strong>Ingresos:</strong> Control de ganancias por cliente y tipo de contrato.</li>
-      <li><strong>Referidos:</strong> Enlace de invitación y seguimiento.</li>
-      <li><strong>Pagos:</strong> Métodos: IBAN, wallet crypto, etc.</li>
-      <li><strong>Notificaciones:</strong> Alertas sobre pagos, contratos y datos fiscales.</li>
-    </ul>
+  <!-- Panel lateral (visible después de completar datos) -->
+  <aside id="sidebar" class="oculto">
+    <h2>Perfil</h2>
+    <button onclick="verDatos()">Revisar datos</button>
+    <button onclick="editarDatos()">Editar datos</button>
+  </aside>
+
+  <!-- Pop-up bienvenida -->
+  <div class="popup" id="popup-bienvenida">
+    <div class="popup-contenido">
+      <h2>¡Bienvenido a Maindle!</h2>
+      <p>Estas a pocos pasos de potenciar tu negocio, completa la información de tu perfil para empezar a trabajar.</p>
+      <button onclick="mostrarFormulario()">Completar perfil</button>
+    </div>
+  </div>
+
+  <!-- Formulario de perfil -->
+  <main id="formulario-perfil" class="oculto">
+    <form id="formPerfil">
+      <h2>Datos de perfil</h2>
+
+      <label>Nombre* <input type="text" name="nombre" required></label>
+      <label>Apellidos* <input type="text" name="apellidos" required></label>
+      <label>Nombre de usuario* <input type="text" name="usuario" required></label>
+      <label>País* 
+        <select name="pais" required></select>
+      </label>
+      <label>Dirección* <input type="text" name="direccion" required></label>
+      <label>TIN (opcional) <input type="text" name="tin"></label>
+
+      <!-- Subida de archivos -->
+      <div class="upload-area">
+        <h3>Agrega aquí tu documentación</h3>
+        <p>Recuerda que debes subir tu documento de identificación por ambas caras, una prueba de residencia y un PDF con tu firma digital. Verificaremos la información lo antes posible.</p>
+        <input type="file" id="documentos" multiple>
+      </div>
+
+      <div class="botones">
+        <button type="submit" class="blanco">Completar</button>
+      </div>
+    </form>
   </main>
 
-  <footer>
-    <p>&copy; 2025 Maindle</p>
-  </footer>
+  <!-- Pop-up final -->
+  <div class="popup" id="popup-final">
+    <div class="popup-contenido">
+      <h2>Vamos a verificar la documentación</h2>
+      <p>En unos minutos habremos terminado la burocracia y pasaremos a la acción.</p>
+    </div>
+  </div>
+
+  <!-- Vista de datos -->
+  <section id="vista-datos" class="oculto"></section>
+
+  <!-- Script -->
+  <script src="usuario.js"></script>
 </body>
 </html>
+

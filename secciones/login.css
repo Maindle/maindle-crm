@@ -44,3 +44,8 @@ input[type="email"], input[type="password"] {
 .botones {
   margin-top: 20px;
 }
+
+.registro-link {
+  margin-top: 20px;
+  color: #333;
+}

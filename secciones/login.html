@@ -2,27 +2,21 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>Iniciar Sesión - Maindle</title>
-  <link rel="stylesheet" href="../style.css">
+  <title>Iniciar sesión - Maindle</title>
+  <link rel="stylesheet" href="login.css">
 </head>
 <body>
-  <header>
-    <h1>Inicia Sesión en Maindle</h1>
-  </header>
-
   <main>
-    <img src="../imagenes/login.jpg" alt="Login" class="hero">
-    <form>
-      <label>Correo electrónico:</label><br>
-      <input type="email"><br>
-      <label>Contraseña:</label><br>
-      <input type="password"><br><br>
-      <button type="submit">Entrar</button>
+    <h1>Iniciar sesión</h1>
+    <form id="loginForm">
+      <label>Correo electrónico* <input type="email" required></label>
+      <label>Contraseña* <input type="password" required></label>
+      <div class="botones">
+        <button type="submit" class="blanco">Entrar</button>
+      </div>
     </form>
+    <p class="registro-link">¿No tienes cuenta? <a href="registro.html">Regístrate</a></p>
   </main>
-
-  <footer>
-    <p>&copy; 2025 Maindle</p>
-  </footer>
+  <script src="login.js"></script>
 </body>
 </html>

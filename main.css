@@ -1,0 +1,31 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background: #f9f9f9;
+  text-align: center;
+}
+
+.centrado {
+  margin-top: 100px;
+}
+
+.botones {
+  margin-top: 40px;
+}
+
+.blanco {
+  background: white;
+  color: black;
+  padding: 12px 24px;
+  border: 1px solid black;
+  margin: 10px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: 0.3s;
+}
+
+.blanco:hover {
+  background: black;
+  color: white;
+}

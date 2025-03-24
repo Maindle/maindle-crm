@@ -1,107 +1,4 @@
 
-body {
-  font-family: Arial, sans-serif;
-  margin: 0;
-  padding: 0;
-  background: #f4f4f4;
-}
-
-.oculto {
-  display: none;
-}
-
-.popup {
-  position: fixed;
-  top: 0; left: 0;
-  width: 100%; height: 100%;
-  background: rgba(0,0,0,0.6);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 10;
-}
-
-.popup-contenido {
-  background: white;
-  padding: 30px;
-  border-radius: 10px;
-  text-align: center;
-  max-width: 400px;
-  border: 2px solid #cc0000; /* rojo mate */
-  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
-}
-
-aside#sidebar {
-  position: fixed;
-  left: 0;
-  top: 0;
-  background: #f0f0f0;
-  padding: 20px;
-  height: 100%;
-  width: 200px;
-  z-index: 5;
-}
-
-aside select {
-  width: 100%;
-  padding: 8px;
-  margin-top: 10px;
-}
-
-.blanco {
-  background: white;
-  color: black;
-  padding: 10px 20px;
-  border: 1px solid black;
-  cursor: pointer;
-}
-
-.blanco:hover {
-  background: black;
-  color: white;
-}
-
-main, .upload-area {
-  margin: 100px auto;
-  padding: 20px;
-  max-width: 600px;
-  background: rgba(255, 255, 255, 0.95);
-  border-radius: 8px;
-  box-shadow: 0 0 10px rgba(0,0,0,0.1);
-  text-align: left;
-}
-
-form label {
-  display: block;
-  margin-top: 15px;
-}
-
-.dropzone {
-  margin-top: 20px;
-  border: 2px dashed #ccc;
-  padding: 30px;
-  text-align: center;
-  background: #fafafa;
-  color: #555;
-  cursor: pointer;
-}
-
-.dropzone.dragover {
-  background-color: #eee;
-  border-color: #000;
-}
-
-#brand {
-  position: fixed;
-  top: 20px;
-  left: 20px;
-  font-weight: bold;
-  font-size: 1.2em;
-  color: black;
-  z-index: 20;
-}
-
-
 aside#sidebar {
   position: fixed;
   left: 0;
@@ -116,40 +13,53 @@ aside#sidebar {
 }
 
 aside h2 {
-  margin-top: 0;
+  margin: 0 0 10px 0;
   font-size: 1.4em;
-  margin-bottom: 20px;
+  font-weight: bold;
+}
+
+aside h2::after {
+  content: "";
+  display: block;
+  width: 80%;
+  border-bottom: 2px solid #000;
+  margin-top: 8px;
 }
 
 .menu-section {
-  margin-bottom: 20px;
+  margin-bottom: 16px;
+  border-bottom: 1px solid #aaa;
+  padding-bottom: 6px;
 }
 
 .menu-section h3 {
   margin: 0;
-  font-size: 1.1em;
+  font-size: 1em;
   cursor: pointer;
-  padding: 10px;
-  background: #f0f0f0;
-  border: 1px solid #ccc;
+  padding: 6px 0;
+  background: transparent;
+  border: none;
+  color: #222;
+  font-weight: 600;
   transition: all 0.3s ease;
 }
 
 .menu-section h3:hover {
-  background: #e0e0e0;
+  color: #000;
 }
 
 .menu-sub {
   list-style: none;
-  margin: 0;
-  padding-left: 15px;
+  margin: 6px 0 0 10px;
+  padding: 0;
   display: none;
 }
 
 .menu-sub li {
-  margin: 8px 0;
+  margin: 6px 0;
   cursor: pointer;
-  color: #333;
+  color: #444;
+  font-size: 0.95em;
 }
 
 .menu-sub li:hover {

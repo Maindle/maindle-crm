@@ -1,0 +1,54 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background: #f9f9f9;
+}
+
+main {
+  max-width: 600px;
+  margin: 80px auto;
+  padding: 20px;
+  background: #fff;
+  border-radius: 8px;
+  text-align: center;
+}
+
+form label {
+  display: block;
+  margin: 15px 0;
+  text-align: left;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+  width: 100%;
+  padding: 10px;
+  margin-top: 5px;
+  box-sizing: border-box;
+}
+
+.blanco {
+  background: white;
+  color: black;
+  padding: 10px 20px;
+  border: 1px solid black;
+  cursor: pointer;
+}
+
+.blanco:hover {
+  background: black;
+  color: white;
+}
+
+.botones {
+  margin-top: 20px;
+}
+
+footer {
+  text-align: center;
+  padding: 20px;
+  margin-top: 40px;
+  color: #666;
+}

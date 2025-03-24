@@ -3,47 +3,28 @@
 <head>
   <meta charset="UTF-8">
   <title>Registro - Maindle</title>
-  <link rel="stylesheet" href="../style.css">
+  <link rel="stylesheet" href="registro.css">
 </head>
 <body>
-  <header>
-    <h1>Registro en Maindle</h1>
-  </header>
-
   <main>
-    <img src="../imagenes/registro.jpg" alt="Registro" class="hero">
+    <h1>Registro de Usuario</h1>
     <p>Regístrate para comenzar a gestionar tus contratos, referidos e ingresos.</p>
-    <form>
-      <label>Nombre completo:</label><br>
-      <input type="text"><br>
-      <label>Correo electrónico:</label><br>
-      <input type="email"><br>
-      <label>Contraseña:</label><br>
-      <input type="password"><br>
-      <label>Confirmar contraseña:</label><br>
-      <input type="password"><br>
+    <form id="registroForm">
+      <label>Nombre completo* <input type="text" required></label>
+      <label>Correo electrónico* <input type="email" required></label>
+      <label>Contraseña* <input type="password" required></label>
+      <label>Confirmar contraseña* <input type="password" required></label>
       <label>
-        <input type="checkbox"> Acepto los términos y condiciones
-      </label><br><br>
-      <button type="submit">Registrarse</button>
+        <input type="checkbox" required> Acepto los términos y condiciones
+      </label>
+      <div class="botones">
+        <button type="submit" class="blanco">Registrarse</button>
+      </div>
     </form>
   </main>
-
   <footer>
     <p>&copy; 2025 Maindle</p>
   </footer>
-<script>
-  document.querySelector("form").addEventListener("submit", function(e) {
-    e.preventDefault();
-
-    // Simular que el usuario se ha registrado
-    localStorage.setItem("usuarioRegistrado", "true");
-
-    alert("¡Registro exitoso! Ahora puedes acceder al Panel de Usuario.");
-
-    // Redirigir al panel
-   window.location.href = "./usuario.html"; // o "secciones/usuario.html" si estás en otra carpeta
-  });
-</script>
+  <script src="registro.js"></script>
 </body>
 </html>

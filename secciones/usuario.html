@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -6,6 +7,8 @@
   <link rel="stylesheet" href="usuario.css">
 </head>
 <body>
+  <div id="brand">Maindle</div>
+
   <aside id="sidebar" class="oculto">
     <h2>Mi Perfil</h2>
     <select id="menu-perfil">
@@ -19,7 +22,7 @@
     <div class="popup-contenido">
       <h2>¡Bienvenido a Maindle!</h2>
       <p>Estas a pocos pasos de potenciar tu negocio. Completa la información de tu perfil para empezar a trabajar.</p>
-      <button onclick="mostrarFormulario()">Completar información</button>
+      <button class="blanco" onclick="mostrarFormulario()">Completar información</button>
     </div>
   </div>
 
@@ -42,7 +45,8 @@
     <div class="upload-area">
       <h3>Agrega aquí tu documentación</h3>
       <p>Recuerda que debes subir tu documento de identificación por ambas caras, una prueba de residencia y un PDF con tu firma digital. Verificaremos la información lo antes posible.</p>
-      <input type="file" id="documentos" multiple>
+      <div id="dropzone" class="dropzone">Arrastra aquí tus archivos o haz clic para seleccionarlos</div>
+      <input type="file" id="documentos" multiple style="display:none">
       <div class="botones">
         <button onclick="finalizarRegistro()" class="blanco">Finalizar</button>
       </div>

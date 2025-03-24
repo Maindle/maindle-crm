@@ -21,6 +21,21 @@ window.onload = () => {
     if (e.target.value === "revisar") verDatos();
     if (e.target.value === "editar") editarDatos();
   });
+
+  const dropzone = document.getElementById("dropzone");
+  const input = document.getElementById("documentos");
+
+  dropzone.addEventListener("click", () => input.click());
+  dropzone.addEventListener("dragover", e => {
+    e.preventDefault();
+    dropzone.classList.add("dragover");
+  });
+  dropzone.addEventListener("dragleave", () => dropzone.classList.remove("dragover"));
+  dropzone.addEventListener("drop", e => {
+    e.preventDefault();
+    dropzone.classList.remove("dragover");
+    input.files = e.dataTransfer.files;
+  });
 };
 
 function mostrarFormulario() {
@@ -41,7 +56,6 @@ document.getElementById("formPerfil").addEventListener("submit", function(e) {
   e.preventDefault();
   const datos = Object.fromEntries(new FormData(this));
   localStorage.setItem("perfilDatos", JSON.stringify(datos));
-
   document.getElementById("formulario-perfil").classList.add("oculto");
   document.getElementById("documentos-section").classList.remove("oculto");
 });
@@ -98,7 +112,14 @@ function cancelarCambios() {
 }
 
 function cargarPaises() {
-  const paises = ["Afganistán", "Alemania", "Argentina", "Australia", "Brasil", "Canadá", "Chile", "Colombia", "España", "Estados Unidos", "Francia", "Italia", "México", "Perú", "Portugal", "Reino Unido", "Uruguay", "Venezuela"];
+  const paises = [
+    "Argentina", "Bolivia", "Brasil", "Chile", "Colombia", "Costa Rica", "Ecuador", "El Salvador", "España",
+    "Estados Unidos", "Francia", "Guatemala", "Honduras", "Irlanda", "Italia", "México", "Nicaragua", "Panamá",
+    "Paraguay", "Perú", "Portugal", "Reino Unido", "República Dominicana", "Suecia", "Suiza", "Uruguay",
+    "Venezuela", "Arabia Saudita", "Catar", "Egipto", "Emiratos Árabes Unidos", "Jordania", "Kuwait", "Líbano",
+    "Marruecos", "Omán", "Túnez", "Bahréin", "Alemania", "Bélgica", "Austria", "Países Bajos", "Dinamarca",
+    "Finlandia", "Noruega", "Grecia", "Polonia", "Rumanía", "Hungría"
+  ];
   const select = document.querySelector("select[name='pais']");
   paises.sort().forEach(p => {
     const opt = document.createElement("option");

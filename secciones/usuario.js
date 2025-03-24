@@ -11,6 +11,7 @@ window.onload = () => {
   if (!perfilCompleto) {
     document.getElementById("popup-bienvenida").style.display = "flex";
   } else {
+    document.getElementById("popup-final").style.display = "flex";
     document.getElementById("sidebar").classList.remove("oculto");
   }
 
@@ -25,6 +26,15 @@ window.onload = () => {
 function mostrarFormulario() {
   document.getElementById("popup-bienvenida").style.display = "none";
   document.getElementById("formulario-perfil").classList.remove("oculto");
+
+  const datosGuardados = JSON.parse(localStorage.getItem("perfilDatos"));
+  if (datosGuardados) {
+    for (const campo in datosGuardados) {
+      if (document.querySelector(`[name="${campo}"]`)) {
+        document.querySelector(`[name="${campo}"]`).value = datosGuardados[campo];
+      }
+    }
+  }
 }
 
 document.getElementById("formPerfil").addEventListener("submit", function(e) {
@@ -87,10 +97,7 @@ function cancelarCambios() {
 }
 
 function cargarPaises() {
-  const paises = [...new Intl.DisplayNames(['es'], { type: 'region' }).of ? 
-    Object.keys(Intl.supportedValuesOf("region")) : 
-    ["Argentina", "Brasil", "España", "México", "Perú", "Colombia", "Francia", "Alemania", "Italia"]
-  ];
+  const paises = ["Afganistán", "Alemania", "Argentina", "Australia", "Brasil", "Canadá", "Chile", "Colombia", "España", "Estados Unidos", "Francia", "Italia", "México", "Perú", "Portugal", "Reino Unido", "Uruguay", "Venezuela"];
   const select = document.querySelector("select[name='pais']");
   paises.sort().forEach(p => {
     const opt = document.createElement("option");

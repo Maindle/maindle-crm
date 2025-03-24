@@ -128,3 +128,10 @@ function cargarPaises() {
     select.appendChild(opt);
   });
 }
+
+
+
+function toggleMenu(elemento) {
+  const lista = elemento.nextElementSibling;
+  lista.style.display = (lista.style.display === "block") ? "none" : "block";
+}

@@ -100,3 +100,58 @@ form label {
   color: black;
   z-index: 20;
 }
+
+
+aside#sidebar {
+  position: fixed;
+  left: 0;
+  top: 0;
+  background: #f8f8f8cc;
+  padding: 20px;
+  height: 100%;
+  width: 220px;
+  z-index: 5;
+  overflow-y: auto;
+  border-right: 1px solid #ddd;
+}
+
+aside h2 {
+  margin-top: 0;
+  font-size: 1.4em;
+  margin-bottom: 20px;
+}
+
+.menu-section {
+  margin-bottom: 20px;
+}
+
+.menu-section h3 {
+  margin: 0;
+  font-size: 1.1em;
+  cursor: pointer;
+  padding: 10px;
+  background: #f0f0f0;
+  border: 1px solid #ccc;
+  transition: all 0.3s ease;
+}
+
+.menu-section h3:hover {
+  background: #e0e0e0;
+}
+
+.menu-sub {
+  list-style: none;
+  margin: 0;
+  padding-left: 15px;
+  display: none;
+}
+
+.menu-sub li {
+  margin: 8px 0;
+  cursor: pointer;
+  color: #333;
+}
+
+.menu-sub li:hover {
+  text-decoration: underline;
+}

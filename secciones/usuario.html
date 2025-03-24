@@ -9,7 +9,45 @@
 <body>
   <div id="brand">Maindle</div>
 
-  <aside id="sidebar" class="oculto">
+  
+<aside id="sidebar" class="oculto">
+  <h2>Maindle<br><small>Mi Perfil</small></h2>
+
+  <div class="menu-section">
+    <h3 onclick="toggleMenu(this)">Mi perfil</h3>
+    <ul class="menu-sub">
+      <li onclick="verDatos()">Ver información</li>
+      <li onclick="editarDatos()">Editar mi información</li>
+    </ul>
+  </div>
+
+  <div class="menu-section">
+    <h3 onclick="toggleMenu(this)">Contratos</h3>
+    <ul class="menu-sub">
+      <li>Mis contratos</li>
+      <li>Adquirir contratos</li>
+    </ul>
+  </div>
+
+  <div class="menu-section">
+    <h3 onclick="toggleMenu(this)">Cobros</h3>
+    <ul class="menu-sub">
+      <li>Cobros pendientes</li>
+      <li>Extracto de pagos</li>
+      <li>Liquidaciones disponibles</li>
+    </ul>
+  </div>
+
+  <div class="menu-section">
+    <h3 onclick="toggleMenu(this)">Clientes</h3>
+    <ul class="menu-sub">
+      <li>Mis clientes</li>
+      <li>Nuevas entradas</li>
+      <li>Retiros</li>
+    </ul>
+  </div>
+</aside>
+
     <h2>Mi Perfil</h2>
     <select id="menu-perfil">
       <option disabled selected>Selecciona una opción</option>

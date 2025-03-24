@@ -41,6 +41,7 @@ document.getElementById("formPerfil").addEventListener("submit", function(e) {
   e.preventDefault();
   const datos = Object.fromEntries(new FormData(this));
   localStorage.setItem("perfilDatos", JSON.stringify(datos));
+
   document.getElementById("formulario-perfil").classList.add("oculto");
   document.getElementById("documentos-section").classList.remove("oculto");
 });

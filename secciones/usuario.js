@@ -1,5 +1,5 @@
 
-window.onload = () => {
+window.addEventListener("DOMContentLoaded", () => {
   const registrado = localStorage.getItem("usuarioRegistrado");
   const perfilCompleto = localStorage.getItem("perfilCompleto");
   const documentacionSubida = localStorage.getItem("documentacionSubida");
@@ -11,50 +11,69 @@ window.onload = () => {
   }
 
   if (!perfilCompleto) {
-    document.getElementById("popup-bienvenida").style.display = "flex";
+    mostrarPopup("popup-bienvenida");
     return;
   }
 
   if (perfilCompleto && !documentacionSubida) {
-    document.getElementById("formulario-documentos").classList.remove("oculto");
+    mostrarSeccion("formulario-documentos");
     return;
   }
 
   if (perfilCompleto && documentacionSubida) {
-    document.getElementById("popup-final").style.display = "flex";
-    document.getElementById("sidebar").classList.remove("oculto");
+    mostrarPopup("popup-final");
+    mostrarSeccion("sidebar");
   }
+});
 
-  cargarPaises();
-};
+function mostrarPopup(id) {
+  const el = document.getElementById(id);
+  if (el) el.classList.remove("oculto");
+}
 
-// Mostrar formulario de perfil
+function ocultarPopup(id) {
+  const el = document.getElementById(id);
+  if (el) el.classList.add("oculto");
+}
+
+function mostrarSeccion(id) {
+  const el = document.getElementById(id);
+  if (el) el.classList.remove("oculto");
+}
+
+// Mostrar formulario y cargar países solo al hacer clic
 function mostrarFormulario() {
-  document.getElementById("popup-bienvenida").style.display = "none";
-  document.getElementById("formulario-perfil").classList.remove("oculto");
+  ocultarPopup("popup-bienvenida");
+  mostrarSeccion("formulario-perfil");
+  cargarPaises();
 }
 
 // Guardar perfil
-document.getElementById("formPerfil").addEventListener("submit", function (e) {
-  e.preventDefault();
-  const datos = Object.fromEntries(new FormData(this));
-  localStorage.setItem("perfilDatos", JSON.stringify(datos));
-  localStorage.setItem("perfilCompleto", "true");
+document.addEventListener("DOMContentLoaded", () => {
+  const formPerfil = document.getElementById("formPerfil");
+  if (formPerfil) {
+    formPerfil.addEventListener("submit", function (e) {
+      e.preventDefault();
+      const datos = Object.fromEntries(new FormData(this));
+      localStorage.setItem("perfilDatos", JSON.stringify(datos));
+      localStorage.setItem("perfilCompleto", "true");
 
-  document.getElementById("formulario-perfil").classList.add("oculto");
-  document.getElementById("formulario-documentos").classList.remove("oculto");
+      this.classList.add("oculto");
+      mostrarSeccion("formulario-documentos");
+    });
+  }
+
+  const finalizarBtn = document.getElementById("finalizarDocumentos");
+  if (finalizarBtn) {
+    finalizarBtn.addEventListener("click", function () {
+      localStorage.setItem("documentacionSubida", "true");
+      document.getElementById("formulario-documentos").classList.add("oculto");
+      mostrarPopup("popup-final");
+      mostrarSeccion("sidebar");
+    });
+  }
 });
 
-// Subida de documentación
-document.getElementById("finalizarDocumentos").addEventListener("click", function () {
-  localStorage.setItem("documentacionSubida", "true");
-
-  document.getElementById("formulario-documentos").classList.add("oculto");
-  document.getElementById("popup-final").style.display = "flex";
-  document.getElementById("sidebar").classList.remove("oculto");
-});
-
-// Revisar datos
 function verDatos() {
   const datos = JSON.parse(localStorage.getItem("perfilDatos"));
   if (!datos) return;
@@ -69,7 +88,6 @@ function verDatos() {
   cont.classList.remove("oculto");
 }
 
-// Editar datos
 function editarDatos() {
   const datos = JSON.parse(localStorage.getItem("perfilDatos"));
   if (!datos) return;
@@ -92,7 +110,7 @@ function editarDatos() {
   cont.appendChild(form);
   cont.classList.remove("oculto");
 
-  form.addEventListener("submit", function(e) {
+  form.addEventListener("submit", function (e) {
     e.preventDefault();
     const nuevos = Object.fromEntries(new FormData(this));
     localStorage.setItem("perfilDatos", JSON.stringify(nuevos));
@@ -112,11 +130,13 @@ function cargarPaises() {
     "Arabia Saudita", "Emiratos Árabes Unidos", "Kuwait", "Catar", "Marruecos", "Egipto"
   ];
   const select = document.querySelector("select[name='pais']");
-  select.innerHTML = "";
-  paises.sort().forEach(p => {
-    const opt = document.createElement("option");
-    opt.value = p;
-    opt.textContent = p;
-    select.appendChild(opt);
-  });
+  if (select) {
+    select.innerHTML = "";
+    paises.sort().forEach(p => {
+      const opt = document.createElement("option");
+      opt.value = p;
+      opt.textContent = p;
+      select.appendChild(opt);
+    });
+  }
 }

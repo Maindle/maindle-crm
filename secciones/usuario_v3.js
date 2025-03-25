@@ -1,73 +1,75 @@
+// Esperar a que se cargue el DOM
+document.addEventListener("DOMContentLoaded", () => {
+  const popupBienvenida = document.getElementById("popup-bienvenida");
+  const popupFinal = document.getElementById("popup-final");
+  const formularioPerfil = document.getElementById("formulario-perfil");
+  const subidaDocumentos = document.getElementById("subida-documentos");
+  const campoPais = formularioPerfil.querySelector("select[name='pais']");
+  const botonCompletar = popupBienvenida.querySelector("button");
+  const botonPerfil = formularioPerfil.querySelector("button");
+  const botonFinalizar = subidaDocumentos.querySelector("button");
+  const local = localStorage;
 
-window.onload = () => {
-  const estado = localStorage.getItem("usuarioEstado");
-  if (!estado) {
-    alert("Debes registrarte antes de acceder.");
-    window.location.href = "registro.html";
-    return;
-  }
-
-  cargarPaises();
-
-  switch (estado) {
-    case "inicio":
-      document.getElementById("popup-bienvenida").style.display = "flex";
-      break;
-    case "perfil":
-      document.getElementById("formulario-perfil").classList.remove("oculto");
-      break;
-    case "documentacion":
-      document.getElementById("subida-documentos").classList.remove("oculto");
-      break;
-    case "completo":
-      document.getElementById("popup-final").style.display = "flex";
-      document.getElementById("sidebar").classList.remove("oculto");
-      break;
-  }
-};
-
-function mostrarFormulario() {
-  document.getElementById("popup-bienvenida").style.display = "none";
-  document.getElementById("formulario-perfil").classList.remove("oculto");
-  localStorage.setItem("usuarioEstado", "perfil");
-}
-
-document.getElementById("formPerfil").addEventListener("submit", function (e) {
-  e.preventDefault();
-  const datos = Object.fromEntries(new FormData(this));
-  localStorage.setItem("perfilDatos", JSON.stringify(datos));
-  localStorage.setItem("usuarioEstado", "documentacion");
-  document.getElementById("formulario-perfil").classList.add("oculto");
-  document.getElementById("subida-documentos").classList.remove("oculto");
-});
-
-function finalizarRegistro() {
-  localStorage.setItem("usuarioEstado", "completo");
-  document.getElementById("subida-documentos").classList.add("oculto");
-  document.getElementById("popup-final").style.display = "flex";
-  document.getElementById("sidebar").classList.remove("oculto");
-}
-
-function verDatos() {
-  const datos = JSON.parse(localStorage.getItem("perfilDatos"));
-  alert(JSON.stringify(datos, null, 2));
-}
-
-function editarDatos() {
-  alert("Funcionalidad de edición en desarrollo.");
-}
-
-function cargarPaises() {
+  // Lista personalizada de países (LATAM, Europa, EE.UU. y países árabes principales)
   const paises = [
-    "Argentina", "Brasil", "Chile", "Colombia", "México", "Perú", "Uruguay", "Venezuela",
-    "España", "Francia", "Alemania", "Italia", "Portugal", "Reino Unido", "Estados Unidos",
-    "Arabia Saudita", "Emiratos Árabes Unidos", "Kuwait", "Qatar", "Egipto"
+    "Alemania", "Arabia Saudita", "Argentina", "Bolivia", "Brasil", "Chile",
+    "Colombia", "Costa Rica", "Cuba", "Ecuador", "Egipto", "Emiratos Árabes Unidos",
+    "España", "Estados Unidos", "Francia", "Guatemala", "Honduras", "Irak", "Irán",
+    "Italia", "Jordania", "Kuwait", "Líbano", "Libia", "Marruecos", "México",
+    "Nicaragua", "Omán", "Palestina", "Panamá", "Paraguay", "Perú", "Portugal",
+    "Qatar", "Reino Unido", "República Dominicana", "Siria", "Suiza", "Túnez",
+    "Uruguay", "Venezuela", "Yemen"
   ];
-  const select = document.querySelector("select[name='pais']");
+
+  // Rellenar select de países
   paises.sort().forEach(p => {
-    const opt = document.createElement("option");
-    opt.value = p;
-    opt.textContent = p;
-    select.appendChild(opt);
+    const option = document.createElement("option");
+    option.value = p;
+    option.textContent = p;
+    campoPais.appendChild(option);
   });
-}
+
+  // Mostrar el pop-up de bienvenida si no ha completado aún
+  const datosCompletos = local.getItem("datosCompletos") === "true";
+  const documentosCompletos = local.getItem("documentosCompletos") === "true";
+
+  if (!datosCompletos) {
+    popupBienvenida.style.display = "flex";
+  } else if (datosCompletos && !documentosCompletos) {
+    formularioPerfil.classList.add("oculto");
+    subidaDocumentos.classList.remove("oculto");
+  } else if (datosCompletos && documentosCompletos) {
+    popupFinal.style.display = "flex";
+  }
+
+  // Mostrar formulario de perfil
+  botonCompletar.addEventListener("click", () => {
+    popupBienvenida.style.display = "none";
+    formularioPerfil.classList.remove("oculto");
+  });
+
+  // Validar formulario de perfil
+  botonPerfil.addEventListener("click", e => {
+    e.preventDefault();
+    const nombre = formularioPerfil.querySelector("[name='nombre']").value.trim();
+    const apellidos = formularioPerfil.querySelector("[name='apellidos']").value.trim();
+    const usuario = formularioPerfil.querySelector("[name='usuario']").value.trim();
+    const direccion = formularioPerfil.querySelector("[name='direccion']").value.trim();
+    const pais = campoPais.value;
+
+    if (nombre && apellidos && usuario && direccion && pais) {
+      local.setItem("datosCompletos", "true");
+      formularioPerfil.classList.add("oculto");
+      subidaDocumentos.classList.remove("oculto");
+    } else {
+      alert("Por favor, completa todos los campos obligatorios.");
+    }
+  });
+
+  // Finalizar registro
+  botonFinalizar.addEventListener("click", () => {
+    local.setItem("documentosCompletos", "true");
+    subidaDocumentos.classList.add("oculto");
+    popupFinal.style.display = "flex";
+  });
+});

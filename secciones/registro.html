@@ -1,23 +1,45 @@
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Registro - Maindle</title>
-  <link rel="stylesheet" href="registro.css">
+  <link rel="stylesheet" href="registro.css" />
 </head>
 <body>
   <main>
     <h1>Registro</h1>
+    <p>Regístrate para comenzar a gestionar tus contratos, referidos e ingresos.</p>
     <form id="registroForm">
-      <label>Correo electrónico* <input type="email" required></label>
-      <label>Contraseña* <input type="password" required></label>
-      <label>Confirmar contraseña* <input type="password" required></label>
-      <label><input type="checkbox" required> Acepto los términos y condiciones</label>
-      <div class="botones">
-        <button type="submit" class="blanco">Registrarse</button>
-      </div>
+      <label>Nombre completo:</label><br />
+      <input type="text" required /><br />
+      <label>Correo electrónico:</label><br />
+      <input type="email" required /><br />
+      <label>Contraseña:</label><br />
+      <input type="password" required /><br />
+      <label>Confirmar contraseña:</label><br />
+      <input type="password" required /><br />
+      <label>
+        <input type="checkbox" required />
+        Acepto los términos y condiciones
+      </label><br /><br />
+      <button type="submit">Registrarse</button>
     </form>
   </main>
-  <script src="registro.js"></script>
+  <script>
+    document.querySelector("form").addEventListener("submit", function (e) {
+      e.preventDefault();
+
+      // Limpiar datos anteriores y marcar nuevo registro
+      localStorage.setItem("usuarioRegistrado", "true");
+      localStorage.removeItem("perfilCompleto");
+      localStorage.removeItem("documentacionSubida");
+      localStorage.removeItem("perfilDatos");
+
+      alert("¡Registro exitoso! Ahora puedes acceder al Panel de Usuario.");
+      window.location.href = "./secciones/usuario.html";
+    });
+  </script>
 </body>
 </html>

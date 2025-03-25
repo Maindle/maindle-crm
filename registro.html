@@ -11,41 +11,29 @@
   <main>
     <h1>Registro</h1>
     <p>Regístrate para comenzar a gestionar tus contratos, referidos e ingresos.</p>
-
     <form id="registroForm">
       <label>Nombre completo:</label><br />
       <input type="text" required /><br />
-
       <label>Correo electrónico:</label><br />
       <input type="email" required /><br />
-
       <label>Contraseña:</label><br />
       <input type="password" required /><br />
-
       <label>Confirmar contraseña:</label><br />
       <input type="password" required /><br />
-
       <label>
         <input type="checkbox" required />
         Acepto los términos y condiciones
       </label><br /><br />
-
       <button type="submit">Registrarse</button>
     </form>
   </main>
-
   <script>
     document.querySelector("form").addEventListener("submit", function (e) {
       e.preventDefault();
-
-      // 🧼 Limpiar cualquier dato anterior
       localStorage.clear();
-
-      // ✅ Iniciar correctamente el flujo
       localStorage.setItem("usuarioRegistrado", "true");
       localStorage.setItem("estadoOnboarding", "inicio");
-
-      alert("¡Registro exitoso! Ahora puedes acceder al Panel de Usuario.");
+      alert("¡Registro exitoso! Serás redirigido al panel.");
       window.location.href = "./secciones/usuario.html";
     });
   </script>

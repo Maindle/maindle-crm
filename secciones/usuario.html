@@ -2,58 +2,52 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Mi Perfil - Maindle</title>
-  <link rel="stylesheet" href="usuario.css" />
+    <meta charset="UTF-8">
+    <title>Mi Perfil - Maindle</title>
+    <link rel="stylesheet" href="usuario.css">
 </head>
 <body>
-  <div id="popup-bienvenida" class="popup">
-    <div class="popup-contenido">
-      <h2>¡Bienvenido a Maindle!</h2>
-      <p>Estás a pocos pasos de potenciar tu negocio. Completa la información de tu perfil para empezar a trabajar.</p>
-      <button onclick="mostrarFormulario()">Completar información</button>
+    <div id="popup-bienvenida" class="popup">
+        <div class="popup-content">
+            <h2>¡Bienvenido a Maindle!</h2>
+            <p>Estás a pocos pasos de potenciar tu negocio. Completa la información de tu perfil para empezar a trabajar.</p>
+            <button id="completarPerfilBtn">Completar información</button>
+        </div>
     </div>
-  </div>
 
-  <main id="formulario-perfil" class="oculto">
-    <h2>Datos de perfil</h2>
-    <form id="formPerfil">
-      <label>Nombre* <input name="nombre" required /></label>
-      <label>Apellidos* <input name="apellidos" required /></label>
-      <label>Nombre de usuario* <input name="usuario" required /></label>
-      <label>País*
-        <select name="pais" required>
-          <option value="">Selecciona un país</option>
-          <option>México</option>
-          <option>Argentina</option>
-          <option>Colombia</option>
-          <option>España</option>
-          <option>Estados Unidos</option>
-          <option>Arabia Saudita</option>
-        </select>
-      </label>
-      <label>Dirección* <input name="direccion" required /></label>
-      <label>TIN (opcional) <input name="tin" /></label>
-      <button type="submit">Continuar</button>
-    </form>
-  </main>
+    <main id="formulario-perfil" class="oculto">
+        <form id="formPerfil">
+            <h2>Datos de perfil</h2>
+            <input type="text" name="nombre" placeholder="Nombre" required>
+            <input type="text" name="apellidos" placeholder="Apellidos" required>
+            <input type="text" name="usuario" placeholder="Nombre de usuario" required>
+            <select name="pais" required>
+                <option value="">Selecciona tu país</option>
+                <option>Argentina</option><option>España</option><option>Estados Unidos</option>
+                <option>Colombia</option><option>Francia</option><option>México</option>
+                <option>Arabia Saudita</option><option>Emiratos Árabes Unidos</option>
+            </select>
+            <input type="text" name="direccion" placeholder="Dirección" required>
+            <input type="text" name="tin" placeholder="TIN (opcional)">
+            <button type="submit">Continuar</button>
+        </form>
+    </main>
 
-  <div id="documentos-section" class="oculto">
-    <h3>Agrega aquí tu documentación</h3>
-    <p>Recuerda que debes subir tu documento de identificación por ambas caras, una prueba de residencia y un PDF con tu firma digital.</p>
-    <div class="dropzone">Arrastra aquí tus archivos</div>
-    <input type="file" id="documentos" multiple />
-    <button onclick="finalizarRegistro()">Finalizar</button>
-  </div>
+    <section id="documentos-section" class="oculto">
+        <h3>Agrega aquí tu documentación</h3>
+        <p>Recuerda que debes subir tu documento de identificación por ambas caras, una prueba de residencia y un PDF con tu firma digital.</p>
+        <div class="dropzone" id="dropzone">Arrastra aquí tus archivos</div>
+        <input type="file" id="documentos" multiple>
+        <button id="finalizarRegistro">Finalizar</button>
+    </section>
 
-  <div id="popup-final" class="popup oculto">
-    <div class="popup-contenido">
-      <h2>Vamos a verificar la documentación</h2>
-      <p>En unos minutos habremos terminado la burocracia y pasaremos a la acción.</p>
+    <div id="popup-final" class="popup oculto">
+        <div class="popup-content">
+            <h2>Vamos a verificar la documentación</h2>
+            <p>En unos minutos habremos terminado la burocracia y pasaremos a la acción.</p>
+        </div>
     </div>
-  </div>
 
-  <script src="usuario.js"></script>
+    <script src="usuario.js"></script>
 </body>
 </html>

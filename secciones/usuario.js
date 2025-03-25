@@ -1,57 +1,60 @@
+
 window.onload = () => {
   const registrado = localStorage.getItem("usuarioRegistrado");
   const perfilCompleto = localStorage.getItem("perfilCompleto");
-  const docsSubidos = localStorage.getItem("documentacionSubida");
+  const documentacionSubida = localStorage.getItem("documentacionSubida");
 
   if (!registrado) {
     alert("Debes registrarte antes de acceder al panel.");
-    window.location.href = "registro.html";
+    window.location.href = "../registro.html";
     return;
   }
 
   if (!perfilCompleto) {
-    mostrarPopup("popup-bienvenida");
+    document.getElementById("popup-bienvenida").style.display = "flex";
     return;
   }
 
-  if (!docsSubidos) {
+  if (perfilCompleto && !documentacionSubida) {
     document.getElementById("formulario-documentos").classList.remove("oculto");
     return;
   }
 
-  document.getElementById("sidebar").classList.remove("oculto");
+  if (perfilCompleto && documentacionSubida) {
+    document.getElementById("popup-final").style.display = "flex";
+    document.getElementById("sidebar").classList.remove("oculto");
+  }
+
+  cargarPaises();
 };
 
-function mostrarPopup(id) {
-  document.getElementById(id).classList.remove("oculto");
-}
-
-function ocultarPopup(id) {
-  document.getElementById(id).classList.add("oculto");
-}
-
+// Mostrar formulario de perfil
 function mostrarFormulario() {
-  ocultarPopup("popup-bienvenida");
+  document.getElementById("popup-bienvenida").style.display = "none";
   document.getElementById("formulario-perfil").classList.remove("oculto");
-  cargarPaises();
 }
 
+// Guardar perfil
 document.getElementById("formPerfil").addEventListener("submit", function (e) {
   e.preventDefault();
   const datos = Object.fromEntries(new FormData(this));
   localStorage.setItem("perfilDatos", JSON.stringify(datos));
   localStorage.setItem("perfilCompleto", "true");
+
   document.getElementById("formulario-perfil").classList.add("oculto");
   document.getElementById("formulario-documentos").classList.remove("oculto");
 });
 
+// Subida de documentación
 document.getElementById("finalizarDocumentos").addEventListener("click", function () {
   localStorage.setItem("documentacionSubida", "true");
+
   document.getElementById("formulario-documentos").classList.add("oculto");
-  mostrarPopup("popup-final");
+  document.getElementById("popup-final").style.display = "flex";
   document.getElementById("sidebar").classList.remove("oculto");
 });
 
+// Revisar datos
 function verDatos() {
   const datos = JSON.parse(localStorage.getItem("perfilDatos"));
   if (!datos) return;
@@ -66,6 +69,7 @@ function verDatos() {
   cont.classList.remove("oculto");
 }
 
+// Editar datos
 function editarDatos() {
   const datos = JSON.parse(localStorage.getItem("perfilDatos"));
   if (!datos) return;
@@ -88,7 +92,7 @@ function editarDatos() {
   cont.appendChild(form);
   cont.classList.remove("oculto");
 
-  form.addEventListener("submit", function (e) {
+  form.addEventListener("submit", function(e) {
     e.preventDefault();
     const nuevos = Object.fromEntries(new FormData(this));
     localStorage.setItem("perfilDatos", JSON.stringify(nuevos));
@@ -109,4 +113,10 @@ function cargarPaises() {
   ];
   const select = document.querySelector("select[name='pais']");
   select.innerHTML = "";
-  paises.sort
+  paises.sort().forEach(p => {
+    const opt = document.createElement("option");
+    opt.value = p;
+    opt.textContent = p;
+    select.appendChild(opt);
+  });
+}

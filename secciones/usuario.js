@@ -1,3 +1,4 @@
+
 function toggleSubmenu(id) {
   const submenu = document.getElementById(`submenu-${id}`);
   if (submenu) {

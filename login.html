@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Iniciar sesión - Maindle</title>
+  <link rel="stylesheet" href="login.css" />
+</head>
+<body>
+  <main>
+    <h1>Iniciar sesión</h1>
+    <form id="loginForm">
+      <label>Correo electrónico:</label><br />
+      <input type="email" required /><br />
+      <label>Contraseña:</label><br />
+      <input type="password" required /><br /><br />
+      <button type="submit">Entrar</button>
+    </form>
+    <p style="text-align:center;margin-top:20px;">
+      ¿No tienes cuenta? <a href="registro.html">Regístrate</a>
+    </p>
+  </main>
+  <script>
+    document.getElementById("loginForm").addEventListener("submit", function (e) {
+      e.preventDefault();
+      const registrado = localStorage.getItem("usuarioRegistrado");
+      if (registrado) {
+        window.location.href = "./secciones/usuario.html";
+      } else {
+        alert("Usuario no registrado. Por favor, regístrate primero.");
+      }
+    });
+  </script>
+</body>
+</html>

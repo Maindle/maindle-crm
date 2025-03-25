@@ -1,33 +1,47 @@
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Iniciar sesión - Maindle</title>
-  <link rel="stylesheet" href="login.css" />
+  <link rel="stylesheet" href="login.css">
 </head>
 <body>
-  <main>
-    <h1>Iniciar sesión</h1>
-    <form id="loginForm">
-      <label>Correo electrónico:</label><br />
-      <input type="email" required /><br />
-      <label>Contraseña:</label><br />
-      <input type="password" required /><br /><br />
-      <button type="submit">Entrar</button>
-    </form>
-    <p style="text-align:center;margin-top:20px;">
-      ¿No tienes cuenta? <a href="registro.html">Regístrate</a>
-    </p>
+  <main class="login-container">
+    <section class="login-card">
+      <h1>Bienvenido a <span>Maindle</span></h1>
+      <p>Inicia sesión para acceder a tu cuenta</p>
+
+      <form id="loginForm">
+        <label for="usuario">Nombre de usuario</label>
+        <input type="text" id="usuario" name="usuario" required>
+
+        <label for="password">Contraseña</label>
+        <input type="password" id="password" name="password" required>
+
+        <button type="submit" class="blanco">Iniciar sesión</button>
+      </form>
+
+      <div class="acciones">
+        <a href="#">He olvidado mi contraseña</a>
+        <a href="registro.html">Registrarme</a>
+      </div>
+    </section>
   </main>
+
   <script>
-    document.getElementById("loginForm").addEventListener("submit", function (e) {
+    document.getElementById("loginForm").addEventListener("submit", function(e) {
       e.preventDefault();
-      const registrado = localStorage.getItem("usuarioRegistrado");
-      if (registrado) {
-        window.location.href = "./secciones/usuario.html";
+
+      const perfil = localStorage.getItem("perfilDatos");
+      const docs = localStorage.getItem("documentacionSubida");
+
+      if (perfil && docs) {
+        localStorage.setItem("usuarioRegistrado", "true");
+        window.location.href = "secciones/usuario.html";
       } else {
-        alert("Usuario no registrado. Por favor, regístrate primero.");
+        alert("No hemos encontrado tu cuenta o no has completado tu perfil.");
       }
     });
   </script>

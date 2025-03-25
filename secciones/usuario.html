@@ -2,28 +2,25 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
   <title>Mi Perfil - Maindle</title>
-  <link rel="stylesheet" href="usuario.css">
+  <link rel="stylesheet" href="usuario.css" />
 </head>
 <body>
 
-  <!-- Sidebar oculto inicialmente -->
+  <!-- Sidebar -->
   <aside id="sidebar" class="oculto">
     <h2>Maindle</h2>
     <h3>Mi Perfil</h3>
     <button onclick="verDatos()">Ver información</button>
     <button onclick="editarDatos()">Editar mi información</button>
-
     <h3>Contratos</h3>
     <button>Mis contratos</button>
     <button>Adquirir contratos</button>
-
     <h3>Cobros</h3>
     <button>Cobros pendientes</button>
     <button>Extracto de pagos</button>
     <button>Liquidaciones disponibles</button>
-
     <h3>Clientes</h3>
     <button>Mis clientes</button>
     <button>Nuevas entradas</button>
@@ -31,7 +28,7 @@
   </aside>
 
   <!-- Pop-up de bienvenida -->
-  <div id="popup-bienvenida" class="popup oculto">
+  <div class="popup oculto" id="popup-bienvenida">
     <div class="popup-contenido borde-rojo">
       <h2>¡Bienvenido a Maindle!</h2>
       <p>Estas a pocos pasos de potenciar tu negocio. Completa la información de tu perfil para empezar a trabajar.</p>
@@ -53,7 +50,7 @@
     </form>
   </main>
 
-  <!-- Formulario documentos -->
+  <!-- Subida de documentación -->
   <section id="formulario-documentos" class="oculto">
     <div class="upload-area">
       <h3>Agrega aquí tu documentación</h3>
@@ -71,9 +68,10 @@
     </div>
   </div>
 
-  <!-- Contenedor de datos -->
+  <!-- Vista de datos -->
   <section id="vista-datos" class="oculto"></section>
 
-  <script src="usuario.js"></script>
+  <!-- JS con versión para evitar caché -->
+  <script src="usuario.js?v=3"></script>
 </body>
 </html>

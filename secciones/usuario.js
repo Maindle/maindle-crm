@@ -1,8 +1,8 @@
-// === usuario.js ===
 
 window.onload = () => {
   const registrado = localStorage.getItem("usuarioRegistrado");
   const perfilCompleto = localStorage.getItem("perfilCompleto");
+  const documentacionSubida = localStorage.getItem("documentacionSubida");
 
   if (!registrado) {
     alert("Debes registrarte antes de acceder al panel.");
@@ -12,23 +12,23 @@ window.onload = () => {
 
   if (!perfilCompleto) {
     document.getElementById("popup-bienvenida").style.display = "flex";
+  } else if (!documentacionSubida) {
+    document.getElementById("formulario-documentos").classList.remove("oculto");
   } else {
+    document.getElementById("popup-final").style.display = "flex";
     document.getElementById("sidebar").classList.remove("oculto");
   }
 
   cargarPaises();
 };
 
-function toggleMenu(h3) {
-  const ul = h3.nextElementSibling;
-  ul.classList.toggle("oculto");
-}
-
+// Mostrar formulario de perfil
 function mostrarFormulario() {
   document.getElementById("popup-bienvenida").style.display = "none";
   document.getElementById("formulario-perfil").classList.remove("oculto");
 }
 
+// Guardar perfil
 document.getElementById("formPerfil").addEventListener("submit", function (e) {
   e.preventDefault();
   const datos = Object.fromEntries(new FormData(this));
@@ -36,20 +36,19 @@ document.getElementById("formPerfil").addEventListener("submit", function (e) {
   localStorage.setItem("perfilCompleto", "true");
 
   document.getElementById("formulario-perfil").classList.add("oculto");
-  document.getElementById("subida-documentos").classList.remove("oculto");
+  document.getElementById("formulario-documentos").classList.remove("oculto");
 });
 
-function finalizarRegistro() {
-  const inputFiles = document.getElementById("documentos");
-  if (!inputFiles.files.length) {
-    alert("Debes subir al menos un archivo.");
-    return;
-  }
-  document.getElementById("subida-documentos").classList.add("oculto");
+// Subida de documentación
+document.getElementById("finalizarDocumentos").addEventListener("click", function () {
+  localStorage.setItem("documentacionSubida", "true");
+
+  document.getElementById("formulario-documentos").classList.add("oculto");
   document.getElementById("popup-final").style.display = "flex";
   document.getElementById("sidebar").classList.remove("oculto");
-}
+});
 
+// Revisar datos
 function verDatos() {
   const datos = JSON.parse(localStorage.getItem("perfilDatos"));
   if (!datos) return;
@@ -64,6 +63,7 @@ function verDatos() {
   cont.classList.remove("oculto");
 }
 
+// Editar datos
 function editarDatos() {
   const datos = JSON.parse(localStorage.getItem("perfilDatos"));
   if (!datos) return;
@@ -86,7 +86,7 @@ function editarDatos() {
   cont.appendChild(form);
   cont.classList.remove("oculto");
 
-  form.addEventListener("submit", function (e) {
+  form.addEventListener("submit", function(e) {
     e.preventDefault();
     const nuevos = Object.fromEntries(new FormData(this));
     localStorage.setItem("perfilDatos", JSON.stringify(nuevos));
@@ -98,15 +98,14 @@ function cancelarCambios() {
   verDatos();
 }
 
+// Paises relevantes (LATAM, Europa, EEUU, árabes)
 function cargarPaises() {
   const paises = [
-    "Argentina", "Bolivia", "Brasil", "Chile", "Colombia", "Costa Rica", "Cuba",
-    "Ecuador", "El Salvador", "España", "Estados Unidos", "Guatemala", "Honduras",
-    "México", "Nicaragua", "Panamá", "Paraguay", "Perú", "Portugal", "Puerto Rico",
-    "República Dominicana", "Uruguay", "Venezuela",
-    "Alemania", "Francia", "Italia", "Reino Unido", "Bélgica", "Suiza", "Suecia", "Noruega",
-    "Dinamarca", "Países Bajos", "Finlandia", "Polonia", "Grecia", "Austria", "Irlanda",
-    "Arabia Saudita", "Emiratos Árabes Unidos", "Qatar", "Kuwait", "Omán"
+    "Alemania", "Arabia Saudita", "Argentina", "Bolivia", "Brasil", "Chile", "Colombia", "Costa Rica",
+    "Cuba", "Dinamarca", "Ecuador", "Egipto", "El Salvador", "Emiratos Árabes Unidos", "España",
+    "Estados Unidos", "Francia", "Guatemala", "Honduras", "Irak", "Irán", "Italia", "Jordania",
+    "Kuwait", "Líbano", "México", "Marruecos", "Nicaragua", "Noruega", "Omán", "Panamá", "Paraguay",
+    "Perú", "Portugal", "Qatar", "Reino Unido", "Suecia", "Suiza", "Siria", "Túnez", "Uruguay", "Venezuela"
   ];
   const select = document.querySelector("select[name='pais']");
   paises.sort().forEach(p => {
@@ -116,21 +115,3 @@ function cargarPaises() {
     select.appendChild(opt);
   });
 }
-
-const dropZone = document.getElementById("dropZone");
-dropZone.addEventListener("dragover", e => {
-  e.preventDefault();
-  dropZone.style.borderColor = "#000";
-});
-
-dropZone.addEventListener("dragleave", e => {
-  e.preventDefault();
-  dropZone.style.borderColor = "#ccc";
-});
-
-dropZone.addEventListener("drop", e => {
-  e.preventDefault();
-  dropZone.style.borderColor = "#ccc";
-  const input = document.getElementById("documentos");
-  input.files = e.dataTransfer.files;
-});

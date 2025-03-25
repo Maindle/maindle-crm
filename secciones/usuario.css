@@ -1,1 +1,105 @@
-/* Updated CSS styles will go here */
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background-color: #f2f2f2;
+}
+
+.sidebar {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 220px;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.8);
+  color: white;
+  padding: 20px;
+}
+
+.sidebar h2 {
+  margin-bottom: 20px;
+}
+
+.sidebar ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+.menu-titulo {
+  font-weight: bold;
+  margin-top: 20px;
+  margin-bottom: 5px;
+}
+
+.submenu li {
+  margin-left: 10px;
+  cursor: pointer;
+  padding: 5px 0;
+  transition: all 0.2s ease;
+}
+
+.submenu li:hover {
+  color: #ccc;
+  text-decoration: underline;
+}
+
+.popup {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  width: 400px;
+  transform: translate(-50%, -50%);
+  background: white;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 0 15px rgba(0,0,0,0.3);
+  z-index: 999;
+}
+
+.oculto {
+  display: none;
+}
+
+.popup-btns {
+  margin-top: 20px;
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.btn-dark {
+  background-color: black;
+  color: white;
+  padding: 8px 14px;
+  border: none;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.btn-dark:hover {
+  background-color: white;
+  color: black;
+  border: 1px solid black;
+}
+
+.btn-light {
+  background-color: white;
+  color: black;
+  padding: 8px 14px;
+  border: 1px solid black;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.btn-light:hover {
+  background-color: black;
+  color: white;
+}
+
+.drop-area {
+  margin-top: 10px;
+  border: 2px dashed #aaa;
+  padding: 40px;
+  text-align: center;
+  color: #888;
+  cursor: pointer;
+}

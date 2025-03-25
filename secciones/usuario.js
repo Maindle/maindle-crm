@@ -1,6 +1,7 @@
+
 window.addEventListener("DOMContentLoaded", () => {
   const registrado = localStorage.getItem("usuarioRegistrado");
-  const estado = localStorage.getItem("estadoOnboarding"); // puede ser: null, 'inicio', 'perfil', 'documentacion'
+  const estado = localStorage.getItem("estadoOnboarding");
 
   if (!registrado) {
     alert("Debes registrarte antes de acceder al panel.");
@@ -45,7 +46,6 @@ function mostrarFormulario() {
   cargarPaises();
 }
 
-// Guardar perfil
 document.addEventListener("DOMContentLoaded", () => {
   const formPerfil = document.getElementById("formPerfil");
   if (formPerfil) {
@@ -54,7 +54,6 @@ document.addEventListener("DOMContentLoaded", () => {
       const datos = Object.fromEntries(new FormData(this));
       localStorage.setItem("perfilDatos", JSON.stringify(datos));
       localStorage.setItem("estadoOnboarding", "perfil");
-
       this.classList.add("oculto");
       mostrarSeccion("formulario-documentos");
     });
@@ -74,12 +73,10 @@ document.addEventListener("DOMContentLoaded", () => {
 function verDatos() {
   const datos = JSON.parse(localStorage.getItem("perfilDatos"));
   if (!datos) return;
-
   let html = `<h2>Datos del Perfil</h2>`;
   for (let key in datos) {
     html += `<p><strong>${key}:</strong> ${datos[key]}</p>`;
   }
-
   const cont = document.getElementById("vista-datos");
   cont.innerHTML = html;
   cont.classList.remove("oculto");
@@ -88,18 +85,13 @@ function verDatos() {
 function editarDatos() {
   const datos = JSON.parse(localStorage.getItem("perfilDatos"));
   if (!datos) return;
-
   const form = document.createElement("form");
   form.id = "editarForm";
   for (let key in datos) {
     form.innerHTML += `<label>${key}: <input name="${key}" value="${datos[key]}"></label>`;
   }
-
-  form.innerHTML += `
-    <button class="blanco" type="submit">Guardar</button>
-    <button class="blanco" type="button" onclick="cancelarCambios()">Cancelar cambios</button>
-  `;
-
+  form.innerHTML += `<button class="blanco" type="submit">Guardar</button>
+    <button class="blanco" type="button" onclick="cancelarCambios()">Cancelar cambios</button>`;
   const cont = document.getElementById("vista-datos");
   cont.innerHTML = "";
   cont.appendChild(form);
@@ -121,8 +113,8 @@ function cargarPaises() {
   const paises = [
     "Argentina", "Brasil", "Chile", "Colombia", "México", "Perú", "Uruguay", "Venezuela",
     "España", "Francia", "Italia", "Alemania", "Portugal", "Reino Unido", "Países Bajos",
-    "Estados Unidos", "Canadá",
-    "Arabia Saudita", "Emiratos Árabes Unidos", "Kuwait", "Catar", "Marruecos", "Egipto"
+    "Estados Unidos", "Canadá", "Arabia Saudita", "Emiratos Árabes Unidos", "Kuwait",
+    "Catar", "Marruecos", "Egipto"
   ];
   const select = document.querySelector("select[name='pais']");
   if (select) {

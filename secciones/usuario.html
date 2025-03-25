@@ -2,76 +2,58 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <title>Mi Perfil - Maindle</title>
-  <link rel="stylesheet" href="usuario.css" />
+  <meta charset="UTF-8">
+  <title>Panel de Usuario - Maindle</title>
+  <link rel="stylesheet" href="usuario.css">
 </head>
 <body>
 
-  <!-- Sidebar -->
-  <aside id="sidebar" class="oculto">
-    <h2>Maindle</h2>
-    <h3>Mi Perfil</h3>
-    <button onclick="verDatos()">Ver información</button>
-    <button onclick="editarDatos()">Editar mi información</button>
-    <h3>Contratos</h3>
-    <button>Mis contratos</button>
-    <button>Adquirir contratos</button>
-    <h3>Cobros</h3>
-    <button>Cobros pendientes</button>
-    <button>Extracto de pagos</button>
-    <button>Liquidaciones disponibles</button>
-    <h3>Clientes</h3>
-    <button>Mis clientes</button>
-    <button>Nuevas entradas</button>
-    <button>Retiros</button>
-  </aside>
+<aside id="sidebar" class="oculto">
+  <h2>Maindle</h2>
+  <h3>Mi Perfil</h3>
+  <button onclick="verDatos()">Ver información</button>
+  <button onclick="editarDatos()">Editar mi información</button>
+</aside>
 
-  <!-- Pop-up de bienvenida -->
-  <div class="popup oculto" id="popup-bienvenida">
-    <div class="popup-contenido borde-rojo">
-      <h2>¡Bienvenido a Maindle!</h2>
-      <p>Estas a pocos pasos de potenciar tu negocio. Completa la información de tu perfil para empezar a trabajar.</p>
-      <button onclick="mostrarFormulario()">Completar información</button>
-    </div>
+<div class="popup oculto" id="popup-bienvenida">
+  <div class="popup-contenido borde-rojo">
+    <h2>¡Bienvenido a Maindle!</h2>
+    <p>Estás a pocos pasos de potenciar tu negocio. Completa la información de tu perfil para empezar a trabajar.</p>
+    <button onclick="mostrarFormulario()">Completar información</button>
   </div>
+</div>
 
-  <!-- Formulario perfil -->
-  <main id="formulario-perfil" class="oculto">
-    <form id="formPerfil">
-      <h2>Datos de perfil</h2>
-      <label>Nombre* <input type="text" name="nombre" required></label>
-      <label>Apellidos* <input type="text" name="apellidos" required></label>
-      <label>Nombre de usuario* <input type="text" name="usuario" required></label>
-      <label>País* <select name="pais" required></select></label>
-      <label>Dirección* <input type="text" name="direccion" required></label>
-      <label>TIN (opcional) <input type="text" name="tin"></label>
-      <button type="submit">Continuar</button>
-    </form>
-  </main>
+<main id="formulario-perfil" class="oculto">
+  <form id="formPerfil">
+    <h2>Datos de perfil</h2>
+    <label>Nombre* <input type="text" name="nombre" required></label>
+    <label>Apellidos* <input type="text" name="apellidos" required></label>
+    <label>Nombre de usuario* <input type="text" name="usuario" required></label>
+    <label>País* <select name="pais" required></select></label>
+    <label>Dirección* <input type="text" name="direccion" required></label>
+    <label>TIN (opcional) <input type="text" name="tin"></label>
+    <button type="submit">Continuar</button>
+  </form>
+</main>
 
-  <!-- Subida de documentación -->
-  <section id="formulario-documentos" class="oculto">
-    <div class="upload-area">
-      <h3>Agrega aquí tu documentación</h3>
-      <p>Recuerda que debes subir tu documento de identificación por ambas caras, una prueba de residencia y un PDF con tu firma digital. Verificaremos la información lo antes posible.</p>
-      <input type="file" id="documentos" multiple>
-      <button id="finalizarDocumentos">Finalizar</button>
-    </div>
-  </section>
-
-  <!-- Pop-up final -->
-  <div class="popup oculto" id="popup-final">
-    <div class="popup-contenido borde-rojo">
-      <h2>Vamos a verificar la documentación</h2>
-      <p>En unos minutos habremos terminado la burocracia y pasaremos a la acción.</p>
-    </div>
+<section id="formulario-documentos" class="oculto">
+  <div class="upload-area">
+    <h3>Agrega aquí tu documentación</h3>
+    <p>Sube tu documento de identificación por ambas caras, prueba de residencia y firma digital.</p>
+    <input type="file" id="documentos" multiple>
+    <button id="finalizarDocumentos">Finalizar</button>
   </div>
+</section>
 
-  <!-- Vista de datos -->
-  <section id="vista-datos" class="oculto"></section>
+<div class="popup oculto" id="popup-final">
+  <div class="popup-contenido borde-rojo">
+    <h2>Vamos a verificar la documentación</h2>
+    <p>En unos minutos habremos terminado la burocracia y pasaremos a la acción.</p>
+  </div>
+</div>
 
-  <!-- JS con versión para evitar caché -->
-  <script src="usuario.js?v=3"></script>
+<section id="vista-datos" class="oculto"></section>
+
+<script src="usuario.js?v=4"></script>
 </body>
 </html>

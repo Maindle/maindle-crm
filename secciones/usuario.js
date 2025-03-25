@@ -1,4 +1,3 @@
-
 window.addEventListener("DOMContentLoaded", () => {
   const registrado = localStorage.getItem("usuarioRegistrado");
   const estado = localStorage.getItem("estadoOnboarding"); // puede ser: null, 'inicio', 'perfil', 'documentacion'

@@ -1,8 +1,7 @@
 
 window.addEventListener("DOMContentLoaded", () => {
   const registrado = localStorage.getItem("usuarioRegistrado");
-  const perfilCompleto = localStorage.getItem("perfilCompleto");
-  const documentacionSubida = localStorage.getItem("documentacionSubida");
+  const estado = localStorage.getItem("estadoOnboarding"); // puede ser: null, 'inicio', 'perfil', 'documentacion'
 
   if (!registrado) {
     alert("Debes registrarte antes de acceder al panel.");
@@ -10,17 +9,17 @@ window.addEventListener("DOMContentLoaded", () => {
     return;
   }
 
-  if (!perfilCompleto) {
+  if (!estado || estado === "inicio") {
     mostrarPopup("popup-bienvenida");
     return;
   }
 
-  if (perfilCompleto && !documentacionSubida) {
+  if (estado === "perfil") {
     mostrarSeccion("formulario-documentos");
     return;
   }
 
-  if (perfilCompleto && documentacionSubida) {
+  if (estado === "documentacion") {
     mostrarPopup("popup-final");
     mostrarSeccion("sidebar");
   }
@@ -41,7 +40,6 @@ function mostrarSeccion(id) {
   if (el) el.classList.remove("oculto");
 }
 
-// Mostrar formulario y cargar países solo al hacer clic
 function mostrarFormulario() {
   ocultarPopup("popup-bienvenida");
   mostrarSeccion("formulario-perfil");
@@ -56,7 +54,7 @@ document.addEventListener("DOMContentLoaded", () => {
       e.preventDefault();
       const datos = Object.fromEntries(new FormData(this));
       localStorage.setItem("perfilDatos", JSON.stringify(datos));
-      localStorage.setItem("perfilCompleto", "true");
+      localStorage.setItem("estadoOnboarding", "perfil");
 
       this.classList.add("oculto");
       mostrarSeccion("formulario-documentos");
@@ -66,7 +64,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const finalizarBtn = document.getElementById("finalizarDocumentos");
   if (finalizarBtn) {
     finalizarBtn.addEventListener("click", function () {
-      localStorage.setItem("documentacionSubida", "true");
+      localStorage.setItem("estadoOnboarding", "documentacion");
       document.getElementById("formulario-documentos").classList.add("oculto");
       mostrarPopup("popup-final");
       mostrarSeccion("sidebar");
@@ -95,9 +93,7 @@ function editarDatos() {
   const form = document.createElement("form");
   form.id = "editarForm";
   for (let key in datos) {
-    form.innerHTML += `
-      <label>${key}: <input name="${key}" value="${datos[key]}"></label>
-    `;
+    form.innerHTML += `<label>${key}: <input name="${key}" value="${datos[key]}"></label>`;
   }
 
   form.innerHTML += `

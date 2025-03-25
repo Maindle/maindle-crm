@@ -4,44 +4,51 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Mi Perfil - Maindle</title>
-  <link rel="stylesheet" href="usuario.css">
+  <link rel="stylesheet" href="usuario.css" />
 </head>
 <body>
-  <aside class="sidebar" id="sidebar">
-    <h2 class="logo">Maindle</h2>
-    <div class="menu">
-      <div class="menu-item">
-        <div class="menu-title" onclick="toggleSubmenu(this)">Mi perfil</div>
-        <div class="submenu">
-          <div>Ver información</div>
-          <div>Editar mi información</div>
-        </div>
-      </div>
-      <div class="menu-item">
-        <div class="menu-title" onclick="toggleSubmenu(this)">Contratos</div>
-        <div class="submenu">
-          <div>Mis contratos</div>
-          <div>Adquirir contratos</div>
-        </div>
-      </div>
-      <div class="menu-item">
-        <div class="menu-title" onclick="toggleSubmenu(this)">Cobros</div>
-        <div class="submenu">
-          <div>Cobros pendientes</div>
-          <div>Extracto de pagos</div>
-          <div>Liquidaciones disponibles</div>
-        </div>
-      </div>
-      <div class="menu-item">
-        <div class="menu-title" onclick="toggleSubmenu(this)">Clientes</div>
-        <div class="submenu">
-          <div>Mis clientes</div>
-          <div>Nuevas entradas</div>
-          <div>Retiros</div>
-        </div>
-      </div>
+  <div class="sidebar">
+    <div class="sidebar-header">
+      <h2>Maindle</h2>
+      <hr class="divider-large"/>
     </div>
-  </aside>
+    <div class="menu-section">
+      <h3 class="menu-title" onclick="toggleSubmenu('perfil')">Mi perfil</h3>
+      <ul id="submenu-perfil" class="submenu oculto">
+        <li>Ver información</li>
+        <li>Editar mi información</li>
+      </ul>
+    </div>
+    <hr/>
+    <div class="menu-section">
+      <h3 class="menu-title" onclick="toggleSubmenu('contratos')">Contratos</h3>
+      <ul id="submenu-contratos" class="submenu oculto">
+        <li>Mis contratos</li>
+        <li>Adquirir contratos</li>
+      </ul>
+    </div>
+    <hr/>
+    <div class="menu-section">
+      <h3 class="menu-title" onclick="toggleSubmenu('cobros')">Cobros</h3>
+      <ul id="submenu-cobros" class="submenu oculto">
+        <li>Cobros pendientes</li>
+        <li>Extracto de pagos</li>
+        <li>Liquidaciones disponibles</li>
+      </ul>
+    </div>
+    <hr/>
+    <div class="menu-section">
+      <h3 class="menu-title" onclick="toggleSubmenu('clientes')">Clientes</h3>
+      <ul id="submenu-clientes" class="submenu oculto">
+        <li>Mis clientes</li>
+        <li>Nuevas entradas</li>
+        <li>Retiros</li>
+      </ul>
+    </div>
+  </div>
+  <div class="contenido">
+    <p>Contenido principal aquí...</p>
+  </div>
   <script src="usuario.js"></script>
 </body>
 </html>

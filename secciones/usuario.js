@@ -1,5 +1,7 @@
 
-function toggleSubmenu(element) {
-  const submenu = element.nextElementSibling;
-  submenu.style.display = submenu.style.display === "block" ? "none" : "block";
+function toggleSubmenu(id) {
+  const submenu = document.getElementById(`submenu-${id}`);
+  if (submenu) {
+    submenu.classList.toggle('oculto');
+  }
 }

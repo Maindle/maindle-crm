@@ -2,50 +2,70 @@
 body {
   margin: 0;
   font-family: Arial, sans-serif;
-  background-color: #f1f1f1;
+  background-color: #f5f5f5;
 }
 
 .sidebar {
   position: fixed;
   left: 0;
   top: 0;
-  width: 240px;
+  width: 220px;
   height: 100vh;
-  background-color: rgba(0, 0, 0, 0.75);
-  color: white;
-  padding: 20px;
+  background-color: rgba(255, 255, 255, 0.95);
+  box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+  padding: 10px 15px;
+  overflow-y: auto;
 }
 
-.logo {
-  font-size: 24px;
-  margin-bottom: 20px;
-  border-bottom: 2px solid white;
-  padding-bottom: 10px;
+.sidebar-header h2 {
+  margin: 0;
+  font-size: 22px;
+  color: #222;
+}
+
+.divider-large {
+  margin: 10px 0;
+  height: 2px;
+  background-color: #000;
+  border: none;
 }
 
 .menu-title {
+  font-size: 16px;
   font-weight: bold;
   cursor: pointer;
-  padding: 8px 0;
-  transition: color 0.3s ease;
-}
-
-.menu-title:hover {
-  color: #ffcc00;
+  margin: 15px 0 5px;
 }
 
 .submenu {
-  display: none;
-  padding-left: 15px;
-  margin-bottom: 10px;
+  list-style: none;
+  padding-left: 10px;
+  margin: 0;
 }
 
-.submenu div {
-  padding: 5px 0;
+.submenu li {
+  margin: 4px 0;
   font-size: 14px;
+  color: #333;
   cursor: pointer;
 }
 
-.submenu div:hover {
-  text-decoration: underline;
+.submenu li:hover {
+  color: #000;
+  font-weight: bold;
+}
+
+.oculto {
+  display: none;
+}
+
+hr {
+  border: none;
+  border-top: 1px solid #ccc;
+  margin: 10px 0;
+}
+
+.contenido {
+  margin-left: 240px;
+  padding: 20px;
 }

@@ -1,53 +1,47 @@
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <title>Mi Perfil - Maindle</title>
-    <link rel="stylesheet" href="usuario.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Mi Perfil - Maindle</title>
+  <link rel="stylesheet" href="usuario.css">
 </head>
 <body>
-    <div id="popup-bienvenida" class="popup">
-        <div class="popup-content">
-            <h2>¡Bienvenido a Maindle!</h2>
-            <p>Estás a pocos pasos de potenciar tu negocio. Completa la información de tu perfil para empezar a trabajar.</p>
-            <button id="completarPerfilBtn">Completar información</button>
+  <aside class="sidebar" id="sidebar">
+    <h2 class="logo">Maindle</h2>
+    <div class="menu">
+      <div class="menu-item">
+        <div class="menu-title" onclick="toggleSubmenu(this)">Mi perfil</div>
+        <div class="submenu">
+          <div>Ver información</div>
+          <div>Editar mi información</div>
         </div>
-    </div>
-
-    <main id="formulario-perfil" class="oculto">
-        <form id="formPerfil">
-            <h2>Datos de perfil</h2>
-            <input type="text" name="nombre" placeholder="Nombre" required>
-            <input type="text" name="apellidos" placeholder="Apellidos" required>
-            <input type="text" name="usuario" placeholder="Nombre de usuario" required>
-            <select name="pais" required>
-                <option value="">Selecciona tu país</option>
-                <option>Argentina</option><option>España</option><option>Estados Unidos</option>
-                <option>Colombia</option><option>Francia</option><option>México</option>
-                <option>Arabia Saudita</option><option>Emiratos Árabes Unidos</option>
-            </select>
-            <input type="text" name="direccion" placeholder="Dirección" required>
-            <input type="text" name="tin" placeholder="TIN (opcional)">
-            <button type="submit">Continuar</button>
-        </form>
-    </main>
-
-    <section id="documentos-section" class="oculto">
-        <h3>Agrega aquí tu documentación</h3>
-        <p>Recuerda que debes subir tu documento de identificación por ambas caras, una prueba de residencia y un PDF con tu firma digital.</p>
-        <div class="dropzone" id="dropzone">Arrastra aquí tus archivos</div>
-        <input type="file" id="documentos" multiple>
-        <button id="finalizarRegistro">Finalizar</button>
-    </section>
-
-    <div id="popup-final" class="popup oculto">
-        <div class="popup-content">
-            <h2>Vamos a verificar la documentación</h2>
-            <p>En unos minutos habremos terminado la burocracia y pasaremos a la acción.</p>
+      </div>
+      <div class="menu-item">
+        <div class="menu-title" onclick="toggleSubmenu(this)">Contratos</div>
+        <div class="submenu">
+          <div>Mis contratos</div>
+          <div>Adquirir contratos</div>
         </div>
+      </div>
+      <div class="menu-item">
+        <div class="menu-title" onclick="toggleSubmenu(this)">Cobros</div>
+        <div class="submenu">
+          <div>Cobros pendientes</div>
+          <div>Extracto de pagos</div>
+          <div>Liquidaciones disponibles</div>
+        </div>
+      </div>
+      <div class="menu-item">
+        <div class="menu-title" onclick="toggleSubmenu(this)">Clientes</div>
+        <div class="submenu">
+          <div>Mis clientes</div>
+          <div>Nuevas entradas</div>
+          <div>Retiros</div>
+        </div>
+      </div>
     </div>
-
-    <script src="usuario.js"></script>
+  </aside>
+  <script src="usuario.js"></script>
 </body>
 </html>

@@ -1,5 +1,14 @@
+
 <!DOCTYPE html>
-<html><body>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Panel de Usuario - Maindle</title>
+  <link rel="stylesheet" href="usuario.css" />
+</head>
+<body>
+
+<!-- BARRA LATERAL -->
 <aside id="sidebar" class="oculto">
   <h2>Maindle<br><span style="font-weight: normal; font-size: 0.9em;">Mi Perfil</span></h2>
 
@@ -37,4 +46,54 @@
     </ul>
   </div>
 </aside>
-</body></html>
+
+<!-- POPUP DE BIENVENIDA -->
+<div class="popup" id="popup-bienvenida">
+  <div class="popup-contenido">
+    <h2>¡Bienvenido a Maindle!</h2>
+    <p>Estas a pocos pasos de potenciar tu negocio. Completa la información de tu perfil para empezar a trabajar.</p>
+    <button onclick="mostrarFormulario()">Completar información</button>
+  </div>
+</div>
+
+<!-- FORMULARIO PERFIL -->
+<main id="formulario-perfil" class="oculto">
+  <form id="formPerfil">
+    <h2>Datos de perfil</h2>
+    <label>Nombre* <input type="text" name="nombre" required></label>
+    <label>Apellidos* <input type="text" name="apellidos" required></label>
+    <label>Nombre de usuario* <input type="text" name="usuario" required></label>
+    <label>País* <select name="pais" required></select></label>
+    <label>Dirección* <input type="text" name="direccion" required></label>
+    <label>TIN (opcional) <input type="text" name="tin"></label>
+    <div class="botones">
+      <button type="submit" class="blanco">Continuar</button>
+    </div>
+  </form>
+</main>
+
+<!-- SUBIDA DE ARCHIVOS -->
+<section id="subida-documentos" class="oculto">
+  <div class="upload-area">
+    <h3>Agrega aquí tu documentación</h3>
+    <p>Recuerda que debes subir tu documento de identificación por ambas caras, una prueba de residencia y un PDF con tu firma digital. Verificaremos la información lo antes posible.</p>
+    <div class="drop-zone" id="dropZone">Arrastra aquí tus archivos</div>
+    <input type="file" id="documentos" multiple>
+    <button onclick="finalizarRegistro()" class="blanco">Finalizar</button>
+  </div>
+</section>
+
+<!-- POPUP FINAL -->
+<div class="popup" id="popup-final">
+  <div class="popup-contenido">
+    <h2>Vamos a verificar la documentación</h2>
+    <p>En unos minutos habremos terminado la burocracia y pasaremos a la acción.</p>
+  </div>
+</div>
+
+<!-- VISTA DATOS -->
+<section id="vista-datos" class="oculto"></section>
+
+<script src="usuario.js"></script>
+</body>
+</html>

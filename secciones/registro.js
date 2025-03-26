@@ -1,7 +1,9 @@
-document.getElementById("registroForm").addEventListener("submit", function(e) {
+
+document.getElementById("registroForm").addEventListener("submit", function (e) {
   e.preventDefault();
+
   localStorage.setItem("usuarioRegistrado", "true");
-  localStorage.removeItem("perfilCompleto"); // aseguramos que aún no ha rellenado datos
-  alert("¡Registro exitoso! Ahora completa tu perfil.");
+
+  alert("¡Registro exitoso! Ahora puedes acceder al Panel de Usuario.");
   window.location.href = "usuario.html";
 });

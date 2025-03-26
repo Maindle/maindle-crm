@@ -7,46 +7,29 @@
   <link rel="stylesheet" href="registro.css" />
 </head>
 <body>
-  <main>
+  <div class="registro-contenedor">
     <h1>Registro</h1>
     <p>Regístrate para comenzar a gestionar tus contratos, referidos e ingresos.</p>
-
     <form id="registroForm">
-      <label>Nombre completo:</label><br />
-      <input type="text" required /><br />
+      <label for="nombre">Nombre completo:</label>
+      <input type="text" id="nombre" required />
 
-      <label>Correo electrónico:</label><br />
-      <input type="email" required /><br />
+      <label for="email">Correo electrónico:</label>
+      <input type="email" id="email" required />
 
-      <label>Contraseña:</label><br />
-      <input type="password" required /><br />
+      <label for="password">Contraseña:</label>
+      <input type="password" id="password" required />
 
-      <label>Confirmar contraseña:</label><br />
-      <input type="password" required /><br />
+      <label for="confirmar">Confirmar contraseña:</label>
+      <input type="password" id="confirmar" required />
 
-      <label>
-        <input type="checkbox" required />
-        Acepto los términos y condiciones
-      </label><br /><br />
+      <label class="terminos">
+        <input type="checkbox" id="terminos" required /> Acepto los términos y condiciones
+      </label>
 
       <button type="submit">Registrarse</button>
     </form>
-  </main>
-
-  <script>
-    document.querySelector("form").addEventListener("submit", function (e) {
-      e.preventDefault();
-
-      // 🧼 Limpiar cualquier dato anterior
-      localStorage.clear();
-
-      // ✅ Iniciar correctamente el flujo
-      localStorage.setItem("usuarioRegistrado", "true");
-      localStorage.setItem("estadoOnboarding", "inicio");
-
-      alert("¡Registro exitoso! Ahora puedes acceder al Panel de Usuario.");
-      window.location.href = "./secciones/usuario.html";
-    });
-  </script>
+  </div>
+  <script src="registro.js"></script>
 </body>
 </html>

@@ -1,22 +1,21 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Iniciar sesión - Maindle</title>
-  <link rel="stylesheet" href="login.css">
+  <link rel="stylesheet" href="login.css" />
 </head>
 <body>
-  <main>
-    <h1>Iniciar sesión</h1>
+  <div class="login-container">
+    <h1>Iniciar sesión en <span class="logo">Maindle</span></h1>
     <form id="loginForm">
-      <label>Correo electrónico* <input type="email" required></label>
-      <label>Contraseña* <input type="password" required></label>
-      <div class="botones">
-        <button type="submit" class="blanco">Entrar</button>
-      </div>
+      <input type="email" id="email" placeholder="Correo electrónico" required />
+      <input type="password" id="password" placeholder="Contraseña" required />
+      <button type="submit">Iniciar sesión</button>
     </form>
-    <p class="registro-link">¿No tienes cuenta? <a href="registro.html">Regístrate</a></p>
-  </main>
+    <p>¿No tienes cuenta? <a href="registro.html">Regístrate</a></p>
+  </div>
   <script src="login.js"></script>
 </body>
 </html>

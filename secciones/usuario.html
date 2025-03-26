@@ -1,86 +1,77 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Mi Perfil - Maindle</title>
-  <link rel="stylesheet" href="usuario.css" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Mi Perfil - Maindle</title>
+    <link rel="stylesheet" href="usuario.css" />
 </head>
 <body>
-  <div class="sidebar">
-    <h2>Maindle</h2>
-    <ul>
-      <li class="menu-titulo">Mi perfil</li>
-      <ul class="submenu">
-        <li onclick="mostrarCompletar()">Completar información</li>
-        <li onclick="mostrarVer()">Ver Perfil</li>
-        <li onclick="mostrarEditar()">Editar mi información</li>
-        <li onclick="mostrarSubida()">Subir documentación</li>
-      </ul>
-      <li class="menu-titulo">Contratos</li>
-      <ul class="submenu">
-        <li>Mis contratos</li>
-        <li>Adquirir contratos</li>
-      </ul>
-      <li class="menu-titulo">Cobros</li>
-      <ul class="submenu">
-        <li>Cobros pendientes</li>
-        <li>Extracto de pagos</li>
-        <li>Liquidaciones disponibles</li>
-      </ul>
-      <li class="menu-titulo">Clientes</li>
-      <ul class="submenu">
-        <li>Mis clientes</li>
-        <li>Nuevas entradas</li>
-        <li>Retiros</li>
-      </ul>
-    </ul>
-  </div>
+    <aside class="sidebar">
+        <div class="logo">Main<span>dle</span></div>
+        <div class="menu">
+            <div class="menu-item" onclick="toggleSubMenu('perfil')">Mi perfil</div>
+            <div class="submenu" id="perfil">
+                <div onclick="verSeccion('completar')">Completar información</div>
+                <div onclick="verSeccion('ver')">Ver Perfil</div>
+                <div onclick="verSeccion('editar')">Editar mi información</div>
+                <div onclick="verSeccion('documentos')">Subir documentación</div>
+            </div>
+            <div class="menu-item" onclick="toggleSubMenu('contratos')">Contratos</div>
+            <div class="submenu" id="contratos">
+                <div>Mis contratos</div>
+                <div>Adquirir contratos</div>
+            </div>
+            <div class="menu-item" onclick="toggleSubMenu('cobros')">Cobros</div>
+            <div class="submenu" id="cobros">
+                <div>Cobros pendientes</div>
+                <div>Extracto de pagos</div>
+                <div>Liquidaciones disponibles</div>
+            </div>
+            <div class="menu-item" onclick="toggleSubMenu('clientes')">Clientes</div>
+            <div class="submenu" id="clientes">
+                <div>Mis clientes</div>
+                <div>Nuevas entradas</div>
+                <div>Retiros</div>
+            </div>
+        </div>
+    </aside>
 
-  <!-- Pop-up inicial -->
-  <div class="popup" id="popup-inicio">
-    <h3>Recuerda completar tu perfil</h3>
-    <p>Nos pondremos a trabajar en cuanto esté listo</p>
-    <div class="popup-btns">
-      <button class="btn-dark" onclick="mostrarCompletar()">Completar ahora</button>
-      <button class="btn-light" onclick="cerrarPopup()">Completar más tarde</button>
-    </div>
-  </div>
+    <main id="main-content">
+        <!-- Pop-ups y formularios dinámicos aquí -->
+        <div id="popup-inicial" class="popup">
+            <h2>Recuerda completar tu perfil</h2>
+            <p>Nos pondremos a trabajar en cuanto esté listo</p>
+            <div class="acciones">
+                <button class="primario" onclick="abrirFormulario()">Completar ahora</button>
+                <button class="secundario" onclick="cerrarPopup()">Completar más tarde</button>
+            </div>
+        </div>
+        <div id="formulario-perfil" class="popup oculto">
+            <h2>Datos de perfil</h2>
+            <form id="formPerfil">
+                <input type="text" name="nombre" placeholder="Nombre" required />
+                <input type="text" name="apellidos" placeholder="Apellidos" required />
+                <input type="text" name="usuario" placeholder="Nombre de usuario" required />
+                <input type="text" name="direccion" placeholder="Dirección" required />
+                <input type="text" name="tin" placeholder="TIN (opcional)" />
+                <div class="acciones">
+                    <button type="submit" class="secundario">Guardar</button>
+                    <button type="button" class="primario" onclick="abrirDocumentos()">Subir documentación</button>
+                </div>
+            </form>
+        </div>
+        <div id="documentos-popup" class="popup oculto">
+            <h2>Sube tu documentación</h2>
+            <div class="dropzone" id="dropzone">Arrastra aquí tus archivos</div>
+            <div class="acciones">
+                <button class="secundario" onclick="document.getElementById('fileInput').click()">Cargar desde el dispositivo</button>
+                <input type="file" id="fileInput" multiple hidden />
+                <button class="primario" onclick="finalizarRegistro()">Subir documentación</button>
+            </div>
+        </div>
+    </main>
 
-  <!-- Pop-up: Completar información -->
-  <div class="popup oculto" id="popup-formulario">
-    <h3>Datos de perfil</h3>
-    <form id="formPerfil">
-      <input type="text" placeholder="Nombre" id="nombre" required />
-      <input type="text" placeholder="Apellidos" id="apellidos" required />
-      <input type="text" placeholder="Nombre de usuario" id="usuario" required />
-      <input type="text" placeholder="Dirección" id="direccion" required />
-      <input type="text" placeholder="TIN (opcional)" id="tin" />
-      <select id="pais" required>
-        <option value="">Selecciona tu país</option>
-        <!-- Aquí se cargarán dinámicamente -->
-      </select>
-      <div class="popup-btns">
-        <button class="btn-light" type="button" onclick="guardarDatos()">Guardar</button>
-        <button class="btn-dark" type="button" onclick="mostrarSubida()">Subir documentación</button>
-      </div>
-    </form>
-  </div>
-
-  <!-- Pop-up: Subir documentos -->
-  <div class="popup oculto" id="popup-documentos">
-    <h3>Sube tu documentación</h3>
-    <p>Arrastra aquí tus archivos</p>
-    <div class="drop-area" onclick="seleccionarArchivo()">
-      <input type="file" id="input-archivos" hidden multiple />
-      <p>Arrastra aquí tus archivos</p>
-    </div>
-    <div class="popup-btns">
-      <button class="btn-light" onclick="seleccionarArchivo()">Cargar desde el dispositivo</button>
-      <button class="btn-dark" onclick="finalizarRegistro()">Subir documentación</button>
-    </div>
-  </div>
-
-  <script src="usuario.js"></script>
+    <script src="usuario.js"></script>
 </body>
 </html>

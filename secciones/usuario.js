@@ -27,14 +27,6 @@ function toggleSubMenu(id) {
     const submenu = document.getElementById(id);
     submenu.style.display = submenu.style.display === "block" ? "none" : "block";
 }
-
 function verSeccion(nombre) {
-    const secciones = document.querySelectorAll('.seccion');
-    secciones.forEach(seccion => seccion.style.display = 'none');
-
-    const activa = document.getElementById(nombre);
-    if (activa) {
-        activa.style.display = 'block';
-    }
+    alert("Accediendo a sección: " + nombre);
 }
-

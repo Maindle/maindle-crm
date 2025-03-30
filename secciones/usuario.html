@@ -1,77 +1,77 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Mi Perfil - Maindle</title>
-  <link rel="stylesheet" href="usuario.css" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Mi Perfil - Maindle</title>
+    <link rel="stylesheet" href="usuario.css" />
 </head>
 <body>
-  <div class="sidebar">
-    <h2 class="logo">Maindle</h2>
-    <div class="menu">
-      <div class="menu-item" data-section="completar-info">Completar información</div>
-      <div class="menu-item" data-section="subir-docs">Subir documentación</div>
-      <div class="menu-item" data-section="ver-perfil">Ver perfil</div>
-    </div>
-  </div>
-
-  <main class="main-content">
-    <section id="completar-info" class="content-section hidden">
-      <h2>Completa tu información</h2>
-      <form id="formPerfil">
-        <input type="text" id="nombre" placeholder="Nombre" required />
-        <input type="text" id="apellidos" placeholder="Apellidos" required />
-        <input type="text" id="usuario" placeholder="Nombre de usuario" required />
-        <input type="text" id="direccion" placeholder="Dirección" required />
-        
-        <div class="telefono-container">
-          <select id="prefijo" required>
-            <option value="+34">🇪🇸 +34</option>
-            <option value="+52">🇲🇽 +52</option>
-            <option value="+57">🇨🇴 +57</option>
-            <option value="+1">🇺🇸 +1</option>
-          </select>
-          <input type="tel" id="telefono" placeholder="Teléfono" required />
+    <aside class="sidebar">
+        <div class="logo">Main<span>dle</span></div>
+        <div class="menu">
+            <div class="menu-item" onclick="toggleSubMenu('perfil')">Mi perfil</div>
+            <div class="submenu" id="perfil">
+                <div onclick="verSeccion('completar')">Completar información</div>
+                <div onclick="verSeccion('ver')">Ver Perfil</div>
+                <div onclick="verSeccion('editar')">Editar mi información</div>
+                <div onclick="verSeccion('documentos')">Subir documentación</div>
+            </div>
+            <div class="menu-item" onclick="toggleSubMenu('contratos')">Contratos</div>
+            <div class="submenu" id="contratos">
+                <div>Mis contratos</div>
+                <div>Adquirir contratos</div>
+            </div>
+            <div class="menu-item" onclick="toggleSubMenu('cobros')">Cobros</div>
+            <div class="submenu" id="cobros">
+                <div>Cobros pendientes</div>
+                <div>Extracto de pagos</div>
+                <div>Liquidaciones disponibles</div>
+            </div>
+            <div class="menu-item" onclick="toggleSubMenu('clientes')">Clientes</div>
+            <div class="submenu" id="clientes">
+                <div>Mis clientes</div>
+                <div>Nuevas entradas</div>
+                <div>Retiros</div>
+            </div>
         </div>
+    </aside>
 
-        <select id="pais" required>
-          <option value="">Selecciona tu país</option>
-          <option value="España">España</option>
-          <option value="México">México</option>
-          <option value="Argentina">Argentina</option>
-          <option value="Colombia">Colombia</option>
-          <option value="Estados Unidos">Estados Unidos</option>
-          <option value="Arabia Saudita">Arabia Saudita</option>
-        </select>
-
-        <input type="text" id="tin" placeholder="TIN (opcional)" />
-        
-        <div class="botones">
-          <button type="submit" class="btn negro">Subir documentación</button>
-          <button type="button" id="guardarPerfil" class="btn blanco">Guardar</button>
+    <main id="main-content">
+        <!-- Pop-ups y formularios dinámicos aquí -->
+        <div id="popup-inicial" class="popup">
+            <h2>Recuerda completar tu perfil</h2>
+            <p>Nos pondremos a trabajar en cuanto esté listo</p>
+            <div class="acciones">
+                <button class="primario" onclick="abrirFormulario()">Completar ahora</button>
+                <button class="secundario" onclick="cerrarPopup()">Completar más tarde</button>
+            </div>
         </div>
-      </form>
-    </section>
+        <div id="formulario-perfil" class="popup oculto">
+            <h2>Datos de perfil</h2>
+            <form id="formPerfil">
+                <input type="text" name="nombre" placeholder="Nombre" required />
+                <input type="text" name="apellidos" placeholder="Apellidos" required />
+                <input type="text" name="usuario" placeholder="Nombre de usuario" required />
+                <input type="text" name="direccion" placeholder="Dirección" required />
+                <input type="text" name="tin" placeholder="TIN (opcional)" />
+                <div class="acciones">
+                    <button type="submit" class="secundario">Guardar</button>
+                    <button type="button" class="primario" onclick="abrirDocumentos()">Subir documentación</button>
+                </div>
+            </form>
+        </div>
+        <div id="documentos-popup" class="popup oculto">
+            <h2>Sube tu documentación</h2>
+            <div class="dropzone" id="dropzone">Arrastra aquí tus archivos</div>
+            <div class="acciones">
+                <button class="secundario" onclick="document.getElementById('fileInput').click()">Cargar desde el dispositivo</button>
+                <input type="file" id="fileInput" multiple hidden />
+                <button class="primario" onclick="finalizarRegistro()">Subir documentación</button>
+            </div>
+        </div>
+    </main>
 
-    <section id="subir-docs" class="content-section hidden">
-      <h2>Sube tu documentación</h2>
-      <div class="dropzone">
-        <p>Arrastra aquí tus archivos o haz clic en el botón</p>
-        <input type="file" id="archivoDoc" multiple />
-      </div>
-      <div class="botones">
-        <button id="btnCargar" class="btn blanco">Cargar desde el dispositivo</button>
-        <button id="btnSubir" class="btn negro">Subir documentación</button>
-      </div>
-    </section>
-
-    <section id="ver-perfil" class="content-section hidden">
-      <h2>Tu perfil</h2>
-      <div id="datosGuardados"></div>
-    </section>
-  </main>
-
-  <script src="usuario.js"></script>
+    <script src="usuario.js"></script>
 </body>
 </html>
